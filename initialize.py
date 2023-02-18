@@ -28,16 +28,20 @@ def initialize_program():
                 if number == "1":
                     input_1.port_scanner(user_input)
                 if number == "2":
-                    input_2.syn_flood_attack()
+                    thread_num = int(input("Number of Thread to use: "))
+                    target_port = int(input("Target Port: "))
+                    num_thread = []
+                    for SF_attack in range(thread_num):
+                        input_2.SynFloodAttack(user_input['dst_ip'], target_port, thread_num)
+                        num_thread.append(SF_attack)
+                        SF_attack.start()
                 # if number == "3":
                 #     program_type.christmas_tree_attack()
                 # if number == "4":
                 #     program_type.another_attack()
                 if number == "5":
-                    reset = input("Are you sure you want to reset the TARGET? (Y/N): ")
-                    if reset == "Y" or "y" or "yes":
-                        user_input.clear()
-                        user_input = get_user_input_for_target()
+                    user_input = get_user_input_for_target()
+
 
 
 def get_user_input_for_target():
