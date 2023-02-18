@@ -1,10 +1,14 @@
-import socket
+import getopt
 import sys
-import time
+import initialize
 
-
-def create_raw_socket():
+if __name__ == "__main__":
     try:
-        raw_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
-    except socket.error as e_msg:
-        print(f"[ Failed ]: Creating RAW socket: {e_msg} ")
+        opts, args = getopt.getopt(sys.argv[1:], 'i:p:c:', ['ip', 'port', 'count'])
+        # print(opts)
+        # print(args)
+        initialize.initialize_program(opts)
+    except getopt.GetoptError:
+        print("Arguments are missing or wrong")
+
+
