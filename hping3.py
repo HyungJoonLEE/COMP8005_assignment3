@@ -4,7 +4,7 @@ import initialize
 
 if __name__ == "__main__":
     try:
-        opts, args = getopt.getopt(sys.argv[1:], 'i:p:c:', ['ip', 'port', 'count'])
+        opts, args = getopt.getopt(sys.argv[1:], 'i:p::c:', ['ip', 'port', 'count'])
         # print(opts)
         # print(args)
         initialize.initialize_program(opts)

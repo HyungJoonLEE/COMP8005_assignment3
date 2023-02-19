@@ -1,9 +1,11 @@
 import ipaddress
 import re
+import random
 from scapy.all import *
 import port_scanner as input_1
 import syn_flood_attack as input_2
 import christmas_attack as input_3
+import land_attack as input_4
 
 
 def initialize_program(opts):
@@ -19,7 +21,7 @@ def initialize_program(opts):
             number = input("1. Port Scan\n"
                            "2. SYN Flood Attack\n"
                            "3. Christmas Tree Attack\n"
-                           "4. Perform Another Attack\n"
+                           "4. LAND Attack\n"
                            "5. EXIT Program\n"
                            "==============================\n"
                            "Choose the option to run the program: ")
@@ -35,8 +37,9 @@ def initialize_program(opts):
                 if number == "3":
                     target_port = int(input("Target Port: "))
                     input_3.ChristmasTreeAttack(user_input['dst_ip'], target_port).christmas_tree_attack(user_input['count'])
-                # if number == "4":
-                #     program_type.another_attack()
+                if number == "4":
+                    target_port = int(input("Target Port: "))
+                    input_4.LandAttack(user_input['dst_ip'], target_port).land_attack(user_input['count'])
                 if number == "5":
                     break
 
@@ -66,7 +69,7 @@ def get_user_input_for_target(opts):
 
     while 1:
         port_start = 0
-        port_end = 65335
+        port_end = 65535
         port_range_valid = port_regex.search(opts[1][1].replace(" ", ""))
         if port_range_valid:
             if port_range_valid.group(2) is None:
@@ -85,3 +88,6 @@ def get_user_input_for_target(opts):
             continue
 
 
+def random_ip():
+    ip = ".".join(map(str, (random.randint(0, 255) for _ in range(4))))
+    return ip

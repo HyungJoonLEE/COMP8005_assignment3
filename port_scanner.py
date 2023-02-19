@@ -1,8 +1,5 @@
-import ipaddress
 from scapy.layers.inet import *
 from scapy.all import *
-import re
-import socket
 
 
 def port_scanner(user_input):

