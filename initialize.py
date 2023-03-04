@@ -43,8 +43,7 @@ def initialize_program(opts):
                     target_port = int(input("Target Port: "))
                     input_4.LandAttack(user_input['dst_ip'], target_port).land_attack(user_input['count'])
                 if number == "5":
-                    target_port = int(input("Target Port: "))
-                    input_5.PingOfDeath(user_input['dst_ip'], target_port).ping_of_death(user_input['count'])
+                    input_5.PingOfDeath(user_input['dst_ip']).ping_of_death(user_input['count'])
                 if number == "6":
                     break
 

