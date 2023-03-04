@@ -6,6 +6,7 @@ import port_scanner as input_1
 import syn_flood_attack as input_2
 import christmas_attack as input_3
 import land_attack as input_4
+import ping_of_death as input_5
 
 
 def initialize_program(opts):
@@ -22,11 +23,12 @@ def initialize_program(opts):
                            "2. SYN Flood Attack\n"
                            "3. Christmas Tree Attack\n"
                            "4. LAND Attack\n"
-                           "5. EXIT Program\n"
+                           "5. Ping Of Death\n"
+                           "6. EXIT Program\n"
                            "==============================\n"
                            "Choose the option to run the program: ")
 
-            if number < "1" or number > "5":
+            if number < "1" or number > "6":
                 print("Number out of range")
             else:
                 if number == "1":
@@ -41,6 +43,9 @@ def initialize_program(opts):
                     target_port = int(input("Target Port: "))
                     input_4.LandAttack(user_input['dst_ip'], target_port).land_attack(user_input['count'])
                 if number == "5":
+                    target_port = int(input("Target Port: "))
+                    input_5.PingOfDeath(user_input['dst_ip'], target_port).ping_of_death(user_input['count'])
+                if number == "6":
                     break
 
 
